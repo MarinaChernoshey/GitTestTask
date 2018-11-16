@@ -1,31 +1,20 @@
-package test.support.appodeal.com.gittesttask.core;
+package test.support.appodeal.com.gittesttask.view.login;
 
-import android.content.SharedPreferences;
-
-import io.reactivex.Observable;
 import io.reactivex.Single;
-import test.support.appodeal.com.gittesttask.model.User;
+import test.support.appodeal.com.gittesttask.base.BaseView;
+import test.support.appodeal.com.gittesttask.base.BaseViewMain;
+import test.support.appodeal.com.gittesttask.network.pojo.User;
 
 public interface MvpContractAuthentication {
 
-    interface ViewMainLogin {
-
-    }
-
-    interface ViewLogin {
-        void showAuthenticationError();
-
-        void showErrorAuthenticationLogin();
-
-        void showErrorAuthenticationPassword();
-
-        void showInternetError();
-
-        SharedPreferences getSharedPreferences();
+    interface View extends BaseViewMain, BaseView<Presenter> {
 
         void StartMainView();
 
         void attachPresenter(Presenter presenter);
+
+        void saveAuthDataInSharedPreferences(String nameFile, String key,
+                                             int mode, String authHeader);
     }
 
     interface ModelLogin {
@@ -34,10 +23,5 @@ public interface MvpContractAuthentication {
 
     interface Presenter {
         void authenticationUser(String login, String password);
-
-        void attachLoginFragment(ViewLogin viewLogin);
-
-        void detachLoginFragment();
     }
-
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".view.fragment.LoginFragment">
+    tools:context=".view.login.LoginFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -26,7 +26,6 @@
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:inputType="text"
-        android:text="AliaksandrShvets"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_please_enter_your_data" />
@@ -40,7 +39,6 @@
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:inputType="textPassword"
-        android:text="9180702rR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_login" />

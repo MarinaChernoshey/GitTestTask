@@ -1,41 +1,34 @@
-package test.support.appodeal.com.gittesttask.view.activity;
+package test.support.appodeal.com.gittesttask.view.main;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import test.support.appodeal.com.gittesttask.R;
-import test.support.appodeal.com.gittesttask.core.MvpContractMain;
-import test.support.appodeal.com.gittesttask.issues.MvpContractIssues;
-import test.support.appodeal.com.gittesttask.issues.PresenterIssues;
-import test.support.appodeal.com.gittesttask.presenter.PresenterMain;
+import test.support.appodeal.com.gittesttask.core.App;
 import test.support.appodeal.com.gittesttask.util.ActivityUtil;
-import test.support.appodeal.com.gittesttask.issues.IssuesFragment;
-import test.support.appodeal.com.gittesttask.view.fragment.ListUserFragment;
-import test.support.appodeal.com.gittesttask.view.fragment.MainDetailFragment;
-import test.support.appodeal.com.gittesttask.view.fragment.WebRepositoriesFragment;
 
-
-public class MainActivity extends ActivityUtil implements MvpContractMain.View.ViewMain {
-
+public class MainActivity extends ActivityUtil implements MvpContractMain.View {
     @BindView(R.id.navigation)
     BottomNavigationView bottomNavigationView;
 
-    private FragmentManager fragmentManager; 
+    private FragmentManager fragmentManager;
+    private MainPresenter presenter;
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
             = item -> {
         switch (item.getItemId()) {
             case R.id.navigation_issue:
-                IssuesFragment issuesFragment = new IssuesFragment();
-                MvpContractIssues.Presenter presenter = new PresenterIssues(issuesFragment);
-                issuesFragment.attachPresenter(presenter);
+                presenter.navigationIssues();
                 return true;
-            case R.id.navigation_dashboard:
+            case R.id.navigation_users:
+                presenter.navigationUsers();
                 return true;
-            case R.id.navigation_notifications:
+            case R.id.navigation_details:
+                presenter.navigationDetailsFromMainScreen(App.getInstance().getLoginUser());
                 return true;
         }
         return false;
@@ -46,33 +39,19 @@ public class MainActivity extends ActivityUtil implements MvpContractMain.View.V
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        presenter = new MainPresenter(this);
         fragmentManager = getSupportFragmentManager();
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+        presenter.startView();
     }
 
     @Override
-    public void showIssues() {
+    public void showFragmentWithAddInBackStack(Fragment fragment) {
+        replaceFragmentWithAddInStack(fragmentManager, fragment);
     }
 
     @Override
-    public void showUsers() {
-    }
-
-    @Override
-    public void showBaseUser(String login) {
-    }
-
-    @Override
-    public void showSameUser(String login) {
-    }
-
-    @Override
-    public void showWebView(String url) {
-        replaceFragmentWithAddInStack(fragmentManager, WebRepositoriesFragment.newInstance(url));
-    }
-
-    @Override
-    public void showOnConnectionInternetError() {
-
+    public void showFragmentWithoutAddInBackStack(Fragment fragment) {
+        replaceFragment(fragmentManager, fragment);
     }
 }

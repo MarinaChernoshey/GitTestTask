@@ -5,7 +5,7 @@
     android:id="@+id/constraint_layout_item_rep"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".view.fragment.DetailUserFragment">
+    tools:context=".view.main.details.user.UserFragment">
 
     <TextView
         android:id="@+id/tv_rep_name"
@@ -102,6 +102,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="108dp" />
+        app:layout_constraintGuide_begin="160dp" />
 
 </android.support.constraint.ConstraintLayout>

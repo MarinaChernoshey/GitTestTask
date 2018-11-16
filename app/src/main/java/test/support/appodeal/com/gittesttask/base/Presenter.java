@@ -2,10 +2,10 @@ package test.support.appodeal.com.gittesttask.base;
 
 import io.reactivex.disposables.Disposable;
 
-public abstract class BaseFragmentsPresenter {
-    public Disposable disposable;
+public abstract class Presenter implements BasePresenter {
+    protected Disposable disposable;
 
-    public void disposeDisposable(Disposable disposable) {
+    protected void disposeDisposable(Disposable disposable) {
         if (disposable != null && !disposable.isDisposed()) {
             disposable.dispose();
         }

@@ -1,9 +1,4 @@
-package test.support.appodeal.com.gittesttask.core;
-
-import android.content.SharedPreferences;
-
-import io.reactivex.Single;
-import test.support.appodeal.com.gittesttask.model.User;
+package test.support.appodeal.com.gittesttask.view.splash;
 
 public interface MvpContractSplash {
 
@@ -11,13 +6,9 @@ public interface MvpContractSplash {
         void startLoginView();
 
         void startMainView();
-
-        SharedPreferences getSharedPreferences();
-
     }
 
     interface Presenter {
         void startSplash(String authenticationHeader);
     }
-
 }

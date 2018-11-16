@@ -1,84 +1,63 @@
-@if "%DEBUG%" == "" @echo off
-@rem ##########################################################################
-@rem
-@rem  Gradle startup script for Windows
-@rem
-@rem ##########################################################################
+package test.support.appodeal.com.gittesttask.view.main.users;
 
-@rem Set local scope for the variables with windows NT shell
-if "%OS%"=="Windows_NT" setlocal
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
-set DIRNAME=%~dp0
-if "%DIRNAME%" == "" set DIRNAME=.
-set APP_BASE_NAME=%~n0
-set APP_HOME=%DIRNAME%
+import com.jakewharton.rxbinding2.support.v7.widget.RxSearchView;
 
-@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
-set DEFAULT_JVM_OPTS=
+import java.util.List;
 
-@rem Find java.exe
-if defined JAVA_HOME goto findJavaFromJavaHome
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import test.support.appodeal.com.gittesttask.R;
+import test.support.appodeal.com.gittesttask.network.pojo.User;
+import test.support.appodeal.com.gittesttask.util.Const;
+import test.support.appodeal.com.gittesttask.view.main.users.adapter.AdapterUsers;
+import test.support.appodeal.com.gittesttask.view.main.users.adapter.AdapterUsersSearch;
 
-set JAVA_EXE=java.exe
-%JAVA_EXE% -version >NUL 2>&1
-if "%ERRORLEVEL%" == "0" goto init
+public class ListUserFragment extends Fragment implements MvpContractUsers.View {
 
-echo.
-echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
-echo.
-echo Please set the JAVA_HOME variable in your environment to match the
-echo location of your Java installation.
+    @BindView(R.id.recycle_view_users)
+    RecyclerView recyclerView;
+    @BindView(R.id.progress_bar_users)
+    ProgressBar progressBar;
 
-goto fail
+    private AdapterUsers adapterUsers;
+    private AdapterUsersSearch adapterUsersSearch;
+    private MvpContractUsers.Presenter presenter;
 
-:findJavaFromJavaHome
-set JAVA_HOME=%JAVA_HOME:"=%
-set JAVA_EXE=%JAVA_HOME%/bin/java.exe
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
-if exist "%JAVA_EXE%" goto init
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_list_user, container, false);
+        ButterKnife.bind(this, view);
+        progressBar.setVisibility(View.VISIBLE);
 
-echo.
-echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
-echo.
-echo Please set the JAVA_HOME variable in your environment to match the
-echo location of your Java installation.
+        adapterUsers = new AdapterUsers(getContext(),
+                position -> presenter.clickUser(adapterUsers.getUsers().get(position).getLogin()),
+                idTailUser -> presenter.requestGetUsers(idTailUser)
+        );
+        recyclerView.setAdapter(adapterUsers);
+        return view;
+    }
 
-goto fail
-
-:init
-@rem Get command-line arguments, handling Windows variants
-
-if not "%OS%" == "Windows_NT" goto win9xME_args
-
-:win9xME_args
-@rem Slurp the command line arguments.
-set CMD_LINE_ARGS=
-set _SKIP=2
-
-:win9xME_args_slurp
-if "x%~1" == "x" goto execute
-
-set CMD_LINE_ARGS=%*
-
-:execute
-@rem Setup the command line
-
-set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
-
-@rem Execute Gradle
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %CMD_LINE_ARGS%
-
-:end
-@rem End local scope for the variables with windows NT shell
-if "%ERRORLEVEL%"=="0" goto mainEnd
-
-:fail
-rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
-rem the _cmd.exe /c_ return code!
-if  not "" == "%GRADLE_EXIT_CONSOLE%" exit 1
-exit /b 1
-
-:mainEnd
-if "%OS%"=="Windows_NT" endlocal
-
-:omega
+    @Override
+    public void onResume() {
+       

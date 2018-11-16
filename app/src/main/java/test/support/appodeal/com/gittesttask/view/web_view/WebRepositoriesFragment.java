@@ -1,4 +1,4 @@
-package test.support.appodeal.com.gittesttask.view.fragment;
+package test.support.appodeal.com.gittesttask.view.web_view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

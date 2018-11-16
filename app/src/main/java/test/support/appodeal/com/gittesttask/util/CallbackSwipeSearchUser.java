@@ -1,5 +1,5 @@
 package test.support.appodeal.com.gittesttask.util;
 
-public interface StartRequestGetNewUsersSearch {
+public interface CallbackSwipeSearchUser {
     void startRequestGetNewUsers();
 }

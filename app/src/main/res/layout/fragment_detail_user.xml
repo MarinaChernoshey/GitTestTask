@@ -4,18 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.DetailUserFragment">
+    android:background="@color/colorWhite"
+    tools:context=".view.main.details.user.UserFragment"
+    tools:layout_editor_absoluteY="81dp">
 
     <ImageView
         android:id="@+id/iv_details_user_avatar"
-        android:visibility="invisible"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:src="@drawable/ic_dashboard_black_24dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/tv_detail_login"
@@ -23,100 +28,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_details_user_avatar"
-        app:layout_constraintStart_toEndOf="@+id/iv_details_user_avatar"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_description_email"
-        style="@style/TextViewDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/detail_user_description_email"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_detail_email"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:enabled="false"
+        android:textColor="@color/edit_text_enabled"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_detail_email" />
-
-    <TextView
-        android:id="@+id/tv_detail_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/iv_details_user_avatar" />
 
-    <TextView
-        android:id="@+id/tv_description_organization"
-        style="@style/TextViewDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/detail_user_description_organization"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_detail_organization"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_detail_email" />
-
-    <TextView
-        android:id="@+id/tv_detail_organization"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_detail_email" />
-
-    <TextView
-        android:id="@+id/tv_description_following_count"
-        style="@style/TextViewDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/detail_user_description_following_count"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_detail_following_count"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_detail_following_count" />
-
-    <TextView
-        android:id="@+id/tv_detail_following_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_detail_organization" />
-
-    <TextView
-        android:id="@+id/tv_description_followers_count"
-        style="@style/TextViewDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/detail_user_description_followers_count"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_detail_followers_count"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_detail_followers_count" />
-
-    <TextView
-        android:id="@+id/tv_detail_followers_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_detail_following_count" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="112dp" />
 
     <ProgressBar
         android:id="@+id/pb_detail"
@@ -130,5 +49,145 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/action_button_edit"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:fabCustomSize="60dp"
+        android:src="@drawable/ic_mode_edit_white_24dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <LinearLayout
+        android:id="@+id/ll_user_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_user_following">
+
+        <TextView
+            android:id="@+id/tv_detail_email"
+            style="@style/TextViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_description_email"
+            style="@style/TextViewDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/detail_user_description_email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_email" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_user_organization"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_user_email">
+
+        <TextView
+            android:id="@+id/tv_detail_organization"
+            style="@style/TextViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_description_organization"
+            style="@style/TextViewDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/detail_user_description_organization"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_organization" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_user_following"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/ll_user_followers"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ll_user_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_login">
+
+        <TextView
+            android:id="@+id/tv_detail_following_count"
+            style="@style/TextViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/tv_description_following_count"
+            style="@style/TextViewDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="@string/detail_user_description_following_count" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_user_followers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ll_user_following"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_login">
+
+        <TextView
+            android:id="@+id/tv_detail_followers_count"
+            style="@style/TextViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/tv_description_followers_count"
+            style="@style/TextViewDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="@string/detail_user_description_followers_count"/>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

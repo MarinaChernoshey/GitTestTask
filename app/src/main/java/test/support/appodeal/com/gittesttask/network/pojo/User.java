@@ -1,7 +1,4 @@
-package test.support.appodeal.com.gittesttask.model;
-
-import android.os.Parcel;
-import android.os.Parcelable;
+package test.support.appodeal.com.gittesttask.network.pojo;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -11,6 +8,24 @@ public class User {
 
     @SerializedName("login")
     private String login;
+
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("email")
+    private String email;
+
+    @SerializedName("blog")
+    private String blog;
+
+    @SerializedName("location")
+    private String location;
+
+    @SerializedName("hireable")
+    private boolean hireable;
+
+    @SerializedName("bio")
+    private String bio;
 
     @SerializedName("company")
     private String company;
@@ -33,6 +48,22 @@ public class User {
     public User(int id, String name) {
         this.id = id;
         this.login = name;
+    }
+
+    public User(String name, String company) {
+        this.name = name;
+        this.company = company;
+    }
+
+    public User(String name, String email, String blog, String company,
+                String location, boolean hireable, String bio) {
+        this.name = name;
+        this.email = email;
+        this.blog = blog;
+        this.location = location;
+        this.hireable = hireable;
+        this.bio = bio;
+        this.company = company;
     }
 
     public User(int id, String name, String company, int countPublicRepositories, String avatarUrl) {
@@ -88,5 +119,29 @@ public class User {
 
     public long getFollowersCount() {
         return followersCount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getBlog() {
+        return blog;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public boolean isHireable() {
+        return hireable;
+    }
+
+    public String getBio() {
+        return bio;
     }
 }

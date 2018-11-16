@@ -1,4 +1,4 @@
-package test.support.appodeal.com.gittesttask.model;
+package test.support.appodeal.com.gittesttask.network.pojo;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,19 +1,22 @@
-package test.support.appodeal.com.gittesttask.details;
+package test.support.appodeal.com.gittesttask.view.main.details;
 
-import test.support.appodeal.com.gittesttask.details.repository.MvpContractRepositories;
-import test.support.appodeal.com.gittesttask.details.user.MvpContractUser;
-import test.support.appodeal.com.gittesttask.view.BaseViewMain;
+import android.support.v4.app.Fragment;
 
-public class MvpContractDetail {
-    interface View extends BaseViewMain<Presenter> {
-        void showUser();
+import test.support.appodeal.com.gittesttask.base.BaseView;
 
-        void showRepositories();
+public interface MvpContractDetail {
+    interface View extends BaseView<Presenter> {
+
+        void closeView();
+
+        void clearSharedPreference(String name, int mode);
     }
 
     interface Presenter {
-        MvpContractUser.View navigationUser(String username);
+        Fragment navigationUser(String username);
 
-        MvpContractRepositories.View navigationRepositories(String username);
+        Fragment navigationRepositories(String username);
+
+        void clickLogout();
     }
 }

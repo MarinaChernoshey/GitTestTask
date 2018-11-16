@@ -6,8 +6,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import test.support.appodeal.com.gittesttask.core.retrofit.GitApi;
-import test.support.appodeal.com.gittesttask.model.User;
+import test.support.appodeal.com.gittesttask.network.retrofit.GitApi;
 
 public class App extends Application {
 
@@ -16,7 +15,7 @@ public class App extends Application {
     private Retrofit retrofit;
     private static String token;
     private static String loginUser;
-    private static User user;
+    private static App app;
 
     @Override
     public void onCreate() {
@@ -29,33 +28,40 @@ public class App extends Application {
                 .build();
 
         gitApi = retrofit.create(GitApi.class);
+
+        app = this;
+
     }
 
-    public static GitApi getApi() {
+    public static App getInstance() {
+        return app;
+    }
+
+    public GitApi getApi() {
         return gitApi;
     }
 
-    public static String getToken() {
+    public String getAuthKey() {
         return token;
     }
 
-    public static String getLoginUser() {
+    public String getLoginUser() {
         return loginUser;
     }
 
-    public static void setToken(String authenticationHeader) {
+    public void setToken(String authenticationHeader) {
         token = authenticationHeader;
     }
 
-    public static void setLoginUser(String login) {
+    public void setLoginUser(String login) {
         loginUser = login;
     }
 
-    public static User getUser() {
-        return user;
+    public void setConnectionListener(
+            ConnectionReceiver.ConnectionReceiverListener listener) {
+        ConnectionReceiver.connectionReceiverListener = listener;
     }
 
-    public static void setUser(User user) {
-        App.user = user;
-    }
+
+
 }

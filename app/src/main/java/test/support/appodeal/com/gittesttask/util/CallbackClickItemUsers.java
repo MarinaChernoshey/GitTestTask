@@ -1,5 +1,5 @@
 package test.support.appodeal.com.gittesttask.util;
 
-public interface ItemUserClickListener {
+public interface CallbackClickItemUsers {
     void onClick(int position);
 }

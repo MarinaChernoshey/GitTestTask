@@ -2,11 +2,11 @@
     <string name="app_name">GitTestTask</string>
     <string name="title_issue">Issue</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_details">Details</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="login_fragment_text_hello">Please, enter your login and password</string>
-    <string name="git_issue">issue</string>
+    <string name="git_issue">issues</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -15,8 +15,8 @@
     <string name="detail_user_description_login">login</string>
     <string name="detail_user_description_email">email</string>
     <string name="detail_user_description_organization">organization</string>
-    <string name="detail_user_description_following_count">following count</string>
-    <string name="detail_user_description_followers_count">followers count</string>
+    <string name="detail_user_description_following_count">following</string>
+    <string name="detail_user_description_followers_count">followers</string>
     <string name="splash_text_loading">Please, wait!</string>
     <string name="rep_description_type">type</string>
     <string name="rep_description_forks">forks count</string>
@@ -24,4 +24,27 @@
     <string name="rep_description_stargazers_count">stargazers count</string>
     <string name="error_login">Please, check your login!</string>
     <string name="error_password">Please, check your password!</string>
+    <string name="button_edit_user">Edit</string>
+    <string name="button_log_out">Logout</string>
+    <string name="tv_editable_hireable">Hireable</string>
+    <string name="button_edit_save">Save</string>
+    <string name="tv_editable_location">Location</string>
+    <string name="tv_connection_internet_error">CONNECTION INTERNET ERROR</string>
+    <string name="error_data_save">Your data doesnt save. Please, check it!</string>
+    <string name="wrong_authentication">Wrong Login or Password</string>
+    <string name="title_users">Users</string>
+    <string name="connection_enternet">Internet connection error</string>
+    <string name="default_resource">default</string>
+    <string name="http_throwable">Http Error:</string>
+    <string name="default_throwable">Error:</string>
+    <string name="tv_editable_name">Name</string>
+    <string name="tv_editable_email">Email</string>
+    <string name="tv_editable_organization">Organization</string>
+    <string name="tv_editable_blog">Blog</string>
+    <string name="tv_editable_bio">Bio</string>
+    <string name="state">State</string>
+    <string name="title">Title</string>
+    <string name="date">Date</string>
+    <string name="commets">Commets</string>
+    <string name="has_project">Has project</string>
 </resources>

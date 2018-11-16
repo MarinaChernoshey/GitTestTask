@@ -1,13 +1,11 @@
-package test.support.appodeal.com.gittesttask.view.activity;
+package test.support.appodeal.com.gittesttask.view.splash;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import test.support.appodeal.com.gittesttask.R;
-import test.support.appodeal.com.gittesttask.core.MvpContractSplash;
-import test.support.appodeal.com.gittesttask.presenter.PresenterSplash;
+import test.support.appodeal.com.gittesttask.view.login.LoginActivity;
 import test.support.appodeal.com.gittesttask.util.Const;
 import test.support.appodeal.com.gittesttask.view.main.MainActivity;
 
@@ -20,13 +18,13 @@ public class SplashActivity extends AppCompatActivity implements MvpContractSpla
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        presenter = new PresenterSplash(this);
-        presenter.startSplash(getToken());
+        presenter = new SplashPresenter(this);
     }
 
     @Override
-    public SharedPreferences getSharedPreferences() {
-        return getPreferences(MODE_PRIVATE);
+    protected void onResume() {
+        super.onResume();
+        presenter.startSplash(getAuthHeader());
     }
 
     @Override
@@ -39,8 +37,8 @@ public class SplashActivity extends AppCompatActivity implements MvpContractSpla
         startActivity(new Intent(this, MainActivity.class));
     }
 
-    private String getToken() {
-        return getPreferences(MODE_PRIVATE)
+    private String getAuthHeader() {
+        return getSharedPreferences(Const.FILE_SHARED_PREFERENCES_SAVE_AUTHENTICATION, MODE_PRIVATE)
                 .getString(Const.STATE_AUTHENTICATION_USER, null);
     }
 }

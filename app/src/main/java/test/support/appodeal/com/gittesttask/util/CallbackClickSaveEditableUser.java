@@ -1,5 +1,5 @@
 package test.support.appodeal.com.gittesttask.util;
 
-public interface ClickSaveEdit {
+public interface CallbackClickSaveEditableUser {
     void onClick();
 }

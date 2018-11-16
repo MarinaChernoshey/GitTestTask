@@ -1,9 +1,8 @@
-package test.support.appodeal.com.gittesttask.view.fragment.adapter;
+package test.support.appodeal.com.gittesttask.view.main.details.repository.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +14,16 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import test.support.appodeal.com.gittesttask.R;
-import test.support.appodeal.com.gittesttask.model.Repository;
-import test.support.appodeal.com.gittesttask.util.Const;
-import test.support.appodeal.com.gittesttask.util.ItemClickListener;
+import test.support.appodeal.com.gittesttask.network.pojo.Repository;
+import test.support.appodeal.com.gittesttask.util.CallbackClickItemRepositories;
 
 public class AdapterListRepository extends RecyclerView.Adapter<AdapterListRepository.ViewHolderItem> {
 
     private List<Repository> repositories = new ArrayList<>();
+    private CallbackClickItemRepositories callbackClickItemRepositories;
 
-    private ItemClickListener itemClickListener;
-
-    public AdapterListRepository(ItemClickListener itemClickListener) {
-        this.itemClickListener = itemClickListener;
+    public AdapterListRepository(CallbackClickItemRepositories callbackClickItemRepositories) {
+        this.callbackClickItemRepositories = callbackClickItemRepositories;
     }
 
     public void updateData(List<Repository> repositoriesNew) {
@@ -78,7 +75,8 @@ public class AdapterListRepository extends RecyclerView.Adapter<AdapterListRepos
         ViewHolderItem(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(v -> itemClickListener.onClick(v, getAdapterPosition()));
+            itemView.setOnClickListener(v -> callbackClickItemRepositories
+                    .onClick(repositories.get(getAdapterPosition()).getHtmlUrl()));
         }
     }
 }

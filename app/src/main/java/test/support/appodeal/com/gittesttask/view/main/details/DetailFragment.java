@@ -1,5 +1,7 @@
-package test.support.appodeal.com.gittesttask.details;
+package test.support.appodeal.com.gittesttask.view.main.details;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,18 +11,18 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.ViewGroup;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import test.support.appodeal.com.gittesttask.R;
-import test.support.appodeal.com.gittesttask.core.MvpContractMain;
-import test.support.appodeal.com.gittesttask.details.repository.RepositoriesFragment;
-import test.support.appodeal.com.gittesttask.details.user.UserFragment;
 import test.support.appodeal.com.gittesttask.util.Const;
-import test.support.appodeal.com.gittesttask.view.fragment.BaseDetailFragment;
-import test.support.appodeal.com.gittesttask.view.fragment.adapter.TabsAdapter;
+import test.support.appodeal.com.gittesttask.view.login.LoginActivity;
 
 public class DetailFragment extends Fragment implements MvpContractDetail.View {
 
@@ -44,9 +46,15 @@ public class DetailFragment extends Fragment implements MvpContractDetail.View {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tab, container, false);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public android.view.View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                                          Bundle savedInstanceState) {
+        android.view.View view = inflater.inflate(R.layout.fragment_tab, container, false);
         ButterKnife.bind(this, view);
 
         if (getArguments() != null && getArguments().containsKey(Const.KEY_PARCELABLE_USER)) {
@@ -60,6 +68,19 @@ public class DetailFragment extends Fragment implements MvpContractDetail.View {
         setSettingForTabLayout();
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.menu_user_logout, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        presenter.clickLogout();
+        return super.onOptionsItemSelected(item);
     }
 
     private void setSettingForTabLayout() {
@@ -86,20 +107,24 @@ public class DetailFragment extends Fragment implements MvpContractDetail.View {
     }
 
     @Override
-    public void showUser() {
-
+    public void closeView() {
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     @Override
-    public void showRepositories() {
-
+    public void clearSharedPreference(String name, int mode) {
+        SharedPreferences.Editor editor = Objects.requireNonNull(
+                getActivity()).getSharedPreferences(name, mode).edit();
+        editor.clear();
+        editor.apply();
     }
 
     @Override
     public void attachPresenter(MvpContractDetail.Presenter presenter) {
         DetailFragment.presenter = presenter;
     }
-
 
     public static class TabsAdapter extends FragmentStatePagerAdapter {
 
@@ -116,9 +141,9 @@ public class DetailFragment extends Fragment implements MvpContractDetail.View {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return (Fragment) presenter.navigationUser(username);
+                    return presenter.navigationUser(username);
                 case 1:
-                    return (Fragment) presenter.navigationRepositories(username);
+                    return presenter.navigationRepositories(username);
                 default:
                     return null;
             }

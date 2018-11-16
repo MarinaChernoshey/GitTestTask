@@ -1,5 +1,7 @@
 package test.support.appodeal.com.gittesttask.base;
 
-public interface BaseView<Presenter> {
-    void attachPresenter(Presenter presenter);
+public interface BaseViewMain {
+    void showErrorToast(String text);
+
+    void hideProgressBar();
 }
